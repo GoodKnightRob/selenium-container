@@ -6,12 +6,16 @@ services:
     ports:
     - 4444:4444
     restart: always
+    shm_size: '2gb'
 
   app:
     build:
       context: .
     volumes:
       - ./app:/app
-    command: sh -c "python3 selenium_script.py"
+    command: sh -c "uvicorn selenium_script:app  --host 0.0.0.0 --reload"
+    ports:
+    - 8000:8000
     depends_on:
       - selenium
+    restart: on-failure

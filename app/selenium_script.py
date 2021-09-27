@@ -2,9 +2,25 @@ from time import sleep
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium import webdriver
 
-sleep(5)
+# sleep(5)
 
-driver = webdriver.Remote('http://selenium:4444/wd/hub', desired_capabilities=DesiredCapabilities.CHROME)
+# driver = webdriver.Remote('http://selenium:4444/wd/hub', desired_capabilities=DesiredCapabilities.CHROME)
 
-driver.get('https://python.org')
-driver.save_screenshot('screenshot.png')
+# driver.get('https://python.org')
+# driver.save_screenshot('screenshot.png')
+
+
+from fastapi import FastAPI
+
+# creates an api object
+app = FastAPI()
+
+@app.get("/")
+def home():
+    sleep(5)
+
+    driver = webdriver.Remote('http://selenium:4444/wd/hub', desired_capabilities=DesiredCapabilities.CHROME)
+
+    driver.get('https://python.org')
+    driver.save_screenshot('screenshot.png')
+    return {"Data":"Test"}
