@@ -9,9 +9,9 @@ docker-compose build
 docker-compose up
 ```
 
-Once the container is up and running you can access 
+Once the container is up and running you can access the container at
 ```sh
 localhost:8000
 ```
-which is invoke the selenum script `selenium_script.py`. 
+which will invoke the selenum script `selenium_script.py`. 
 The default script goes to python.org and captures a screeenshot
