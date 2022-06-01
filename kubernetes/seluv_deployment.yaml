@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seluv
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seluv
+  template:
+    metadata:
+      labels:
+        app: seluv
+    spec:
+      containers:
+      - name: seluv
+        image: iad.ocir.io/idgwlkugt9go/selenium_app:latest
+        imagePullPolicy: Always
+        command: ["/bin/sh"]
+        args: ["-c", "uvicorn selenium_script:app  --host 0.0.0.0 --reload"]
+        ports:
+        - containerPort: 8000
+      imagePullSecrets:
+        - name: ocirsecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sel-uv-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: seluv
