@@ -15,7 +15,7 @@ next let's create a worker nodes
 `kubectl create -f selenium-node-firefox-deployment.yaml `
 
 If you prefer chrome you can create a chrome worker node, just be sure your selenium options are set to the correct browser
-`kubectl create --filename=staging/selenium/selenium-node-chrome-deployment.yaml`
+`kubectl create --f selenium-node-chrome-deployment.yaml`
 
 ## Deploying the application
 Ensure the application is uploaded to your OCIR registry
