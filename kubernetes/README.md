@@ -6,16 +6,16 @@ Ensure cluster is up
 
 ## Deploying Selenium
 first step is to bring up the selenium hub
->kubectl create -f selenium-hub-deployment.yaml 
+`kubectl create -f selenium-hub-deployment.yaml `
 
 next create a service that the hub can use to communicate
->kubectl create -f selenium-hub-svc.yaml
+`kubectl create -f selenium-hub-svc.yaml`
 
 next let's create a worker nodes
->kubectl create -f selenium-node-firefox-deployment.yaml 
+`kubectl create -f selenium-node-firefox-deployment.yaml `
 
 If you prefer chrome you can create a chrome worker node, just be sure your selenium options are set to the correct browser
->kubectl create --filename=staging/selenium/selenium-node-chrome-deployment.yaml
+`kubectl create --filename=staging/selenium/selenium-node-chrome-deployment.yaml`
 
 ## Deploying the application
 Ensure the application is uploaded to your OCIR registry
@@ -40,7 +40,7 @@ Pulling the image
 ### Pulling the image from Registry for Kubernetes Deployments
 
 Create Docker registry secret and use Auth token
-  - `kubectl create secret docker-registry <secret-name> --docker-server=<region-code>.ocir.io --docker-username='<tenancy-namespace>/<oci-username>' --docker-password='<oci-auth-token' --docker-email=`<email-address>'`
+  - `kubectl create secret docker-registry <secret-name> --docker-server=<region-code>.ocir.io --docker-username='<tenancy-namespace>/<oci-username>' --docker-password='<oci-auth-token' --docker-email='<email-address>'`
 
 This registry secret will be used in the kubernetes deployment of the app
 
@@ -50,7 +50,7 @@ kubectl create -f seluvi_deployment.yaml
 ## Trouble shooting / changing the python file
 
 To view the logs of the app
->kubectl logs  <podname> seluv
+`kubectl logs  <podname> seluv`
 
 To log into the container
->kubectl exec -it <podname> -c seluv -- /bin/bash
+`kubectl exec -it <podname> -c seluv -- /bin/bash`
